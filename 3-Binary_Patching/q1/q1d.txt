@@ -1,0 +1,9 @@
+I chose the patch the instruction:
+80486cb:	75 17                	jne    80486e4 <main+0x145>
+in order to make it:
+80486cb:	74 17                	jmp    80486e4 <main+0x145>
+The logic behind it is that in the original version we took the branch
+only if eax != 0 but we want to make a version that will take the branch
+anyway, and thus, a version that will jump any way regardless of eax.
+80486cb in decimal = 1739
+jmp opcode in decaimal = 235

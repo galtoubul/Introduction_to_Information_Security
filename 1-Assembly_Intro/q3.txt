@@ -1,0 +1,28 @@
+This code finds the lowest address that is bigger than EDI
+and its data is equal zero (_LABEL1)
+Then, it copies the data from addresses bigger than ESI (inclusive)
+al long as the copied data is not zero (_LABEL2)
+
+Ilustration:
+Before running given code:
+Address: EDI
+Data:   |-------------- not zero --------------| 0
+Address: ESI
+Data:   |~~~~~~~ not zero ~~~~~~~| 0
+After running given code:
+Address: EDI
+Data:   |-------------- not zero --------------||~~~~~~~ not zero ~~~~~~~| 0
+Address: ESI
+Data:   |~~~~~~~ not zero ~~~~~~~| 0
+
+Assembly to C:
+
+// _LABEL1
+while (*EDI != 0)
+    EDI++;
+// _LABEL2
+do {
+    *EDI = *(ESI & 0xff);
+    ESI++;
+    EDI++;
+} while (*(ESI & 0xff) != 0); 

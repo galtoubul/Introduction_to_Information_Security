@@ -1,0 +1,11 @@
+In order to patch the required changes I used 2 deadzone of nops.
+The bigger starts at: 080485cd
+The smaller starts at: 08048633
+The locataion of the bigger isn't good for inserting our change since at that
+point we havn't read the file yet and the desired place is after a succesful
+line reading. Fortunately, we have the smaller dead zone execatly there.
+So, I made a jump from this point to the big dead zone.
+There, I checked that the line starts with #!.
+If it does, I pushed the rest of the line to stack, called system()
+and jumped back to perform a new line reading.
+OW, I continued at a rgular execution (just printing).

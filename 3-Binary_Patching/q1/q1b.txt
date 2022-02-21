@@ -1,0 +1,3 @@
+The way I chose to fix invalid messages was to find the right value of the
+second byte (the signature) by xoring all bytes in indexes > 2 with 193 and 
+if necessary changing the second byte

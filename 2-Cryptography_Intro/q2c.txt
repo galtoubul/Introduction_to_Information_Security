@@ -1,0 +1,6 @@
+We shall notice that CODE_APPROVAL = 1
+In accordance to RSA signing process:
+signature = m^d mod n ,where: d = the secret key, m = status
+Thus, for CODE_APPROVAL we will get:
+signature = 1^d mod n = 1 mod n = 1
+-> status = 1, signatur = 1

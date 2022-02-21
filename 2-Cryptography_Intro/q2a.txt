@@ -1,0 +1,6 @@
+Since the pin is only 4 decimal digits long we have 10^4 = 10000
+different keys we can try. Thus, I chose to brute force the pin, 
+i.e. I tried to encrypt all possible pins (till I found the right one)
+and to compare their encryption to the given encrypted pin.
+Since, both the encryption I used and the encryption that was used on the
+given encrypted key are the same, we can be sure we will find the right key.

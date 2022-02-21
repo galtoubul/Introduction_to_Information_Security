@@ -1,0 +1,9 @@
+According to my analysis of the original code (msgcheck):
+A valid message M is one that satisfies:
+M[1] == 193 xor M[2] xor ... xor M[M[0]+2]
+(where M[M[i]] = 0 for i >= len(M))
+OW it is invalid message
+It is important to note that msgcheck check (xoring) the message until the 
+byte at place M[0]+2 regardless to the actual size of the message
+If the message is shorter than M[0]+2 it won'y matter since
+msgcheck will continue to xor with 0s

@@ -1,0 +1,4 @@
+I built a plaintext_scorer that uses 3000 common English words.
+At first, it splits the text into words and then:
+If it is a one letter word it should be either "i" or "a"
+Otherwise, it should be an English word that is one of the 3000 most common English words.

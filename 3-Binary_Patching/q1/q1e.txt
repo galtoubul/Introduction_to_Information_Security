@@ -1,0 +1,7 @@
+In order to always return 0 (not inculding non existing files or files that
+can't be opened) I pathched eax (return value)
+Original version:
+80486dd:	b8 01 00 00 00       	mov    eax,0x1
+After patching:
+80486dd:	b8 00 00 00 00       	mov    eax,0x0
+80486dd in decimal = 1758

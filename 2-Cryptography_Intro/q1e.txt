@@ -1,0 +1,14 @@
+Our advantage is we know the key length. The way I used it:
+Let:
+* cipher    = c_0, ..., c_n where c_i is char #i in the cipher.
+* key       = k_0, ..., k_r where k_i is char #i in the key.
+* |k|       = key length
+First, we split the cipher to |k| sub_ciphers such that c_i belongs to sub_cipher i mod |k|.
+Let: sub_cipher i[j] = the j(th) byte at sub_cipher i.
+Then, we know that for each sub_cipher i: sub_cipher i[j] was xored with k_j
+since the key was repeated when the plaintext was encrypted.
+Thus, we can crack k_j by xoring sub_cipher i[j] with all 256 possible keys (byte size key)
+and taking k_i such that when summing the letter probabilites of (sub_cipher i[j] xor k_j)
+for all |k| sub_cipher we get the max.
+Since, we are cracking the key letter by letter I used letter probabilites instead of
+the plaintext_score I used for 1d when brute forcing a shorter key.

@@ -1,0 +1,7 @@
+In order to brute force the cipher we have to generate all possible 
+keys and use each one of them to decrypt the cipher using the
+function we coded at B.
+Each decryption we will get will be scored by the function we coded at C
+and the decryption with the biggest score will be the result.
+Since the key will be only 2B long it will give us 65536 different
+decryptions we will have to compare.

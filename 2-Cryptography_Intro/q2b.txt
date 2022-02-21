@@ -1,0 +1,8 @@
+I used the following:
+1. According to RSA: encrypted_credit_card = decrypted_credit_card^e mod N
+2. Given e = 3, max(decrypted_credit_card) = 999999999:
+   999999999^3 << n -> 999999999^3 mod n = 999999999^3
+   Thus, in order to find decrypted_credit_card we can just calculate
+   the 3rd root of encrypted_credit_card.
+   Because of numeric mistakes we have to round the result of 
+   encrypted_credit_card^(1/3)

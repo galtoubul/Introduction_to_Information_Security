@@ -1,0 +1,12 @@
+Given a message M:
+This time, instead of fixing the signature (M[1]) I chose to fix
+the message to fit the given signature by adding an extra byte at
+place M[0] + 2 (the end of checking/xoring zone)
+I chose the byte in accordance to this calculation:
+Given a signature - s, a cuurent xor value - curr_sign,
+such that: s != curr_sign, I had to find x,
+such that: x xor curr_sign == s
+By xoring both sides with curr_sign we get:
+(x xor curr_sign) xor curr_sign == s xor curr_sign
+-> x xor 0 == s xor curr_sign -> x == s xor curr_sign
+So, I inserted s xor curr_sign
