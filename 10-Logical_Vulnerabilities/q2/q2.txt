@@ -1,0 +1,6 @@
+pickle.loads can use reduce in order to serialize the pickled object
+Moreover, when reduce returns a tuple than the first element is a callable
+object and the second is a tuple of arguments for the callable object, so I used
+it to pass os.system as the callable object and 'echo hacked' as the argument.
+By doing so, when pickle.loads will serialize the object it will run the 
+callable object (os.system) with its args ('echo hacked')

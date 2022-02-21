@@ -1,0 +1,7 @@
+The vulnerability is that the escaping/blacklisting isn't good enough and let us inject JS.
+The exploit is posting an image with a non valid source and handling
+the error of loading the image with code that changes the image source
+to a cat gif only if it is the first time the user sees the image
+(I check it using a status var that is being stored in the local storage).
+I copied the same JS code for onload as well just in case though we will
+probably never reach it.

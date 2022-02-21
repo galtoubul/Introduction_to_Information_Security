@@ -1,0 +1,8 @@
+The vulnerability is that there isn't a validation for validating that the
+name of a new channel doesn't contain a script element.
+Thus, the exploit I chose is creating a new channel with a name that contains
+a script for creating a new post in #general-spam with "Good Morning!" text,
+and then refreshing the messages so that the message will be shown (I used
+the code from PostMessage).
+The attack works since the channels' list is identicall for all users and is being 
+loaded from the DB at each $(document).ready.

@@ -1,0 +1,25 @@
+.form-control, .form-control:focus, .btn {
+    background-color: #6c757d;
+    color: #fff
+}
+
+::placeholder {
+    color: #fff !important
+}
+
+body {
+    background: #343a40;
+    color: #f8f9fa
+}
+
+mark {
+    background: #d1eef2
+}
+
+a, a:visited {
+    color: #fd7e14
+}
+
+a:hover {
+    color: #ec9349
+}

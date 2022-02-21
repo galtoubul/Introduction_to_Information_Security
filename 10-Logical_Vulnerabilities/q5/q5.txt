@@ -1,0 +1,18 @@
+The vulnerability in the code is TOCTOU:
+validate_script calls verify with the data from the json, so that verify
+doesn't read the data in real time. verify loops for some time and if the data
+matches the signature than execute_script is called, but it reads the file again
+so that we have a gap between the first read of validate_script to the second read of
+execute_script.
+At average, it takes about 6 seconds to "python3 run.py example.json".
+Thus, it makes sense that if we will wait about 2 seconds then the data was already
+passed to verify and it is probably looping so we can rewrite the file to
+contain our desired command as the value of 'command'.
+I ran run.py as a subprocess. It is reseanoble to assume (though we can't be sure 
+since it depends on the OS scheduler decisions) that when our q5.py process will sleep,
+the process of run.py will get CPU time and will pass the file's data to verify.
+Then, when it will loop for a while there is going a be a context switch from run.py
+to q5.py so that my code will rewrite the file, and then there will be another context
+switch back to run.py which will finish verification (successfully since it verifies
+the original file in which the command's value matches the signature) and will move
+to execution of the same path from the begining, only now the file was changed.

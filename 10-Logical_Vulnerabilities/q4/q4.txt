@@ -1,0 +1,9 @@
+When a JSON has the same key more than once than the value of the last one is going
+to be used. Using this fact, I created a string at the same format as a JSON dump
+with 2 "command" keys so that when the JSON will be loaded the second
+entry will override the first one. The flaw is that run.pu uses json.load() when
+validating and read() when executing. So, the data we send will be in JSON format at
+validation and as a string at execution. So, it will make the validation on the value
+of the second key which is the one that matches the signature and the value of the first
+one is the one that contains our "echo hacked". regex.match() catches the first
+occurance so the value of the first key will be used at execution.

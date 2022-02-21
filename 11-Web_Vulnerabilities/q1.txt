@@ -1,0 +1,9 @@
+The flow of opening the website for a client:
+1. login_required calls validate_login with the client's 'login' cookie
+2. validate_login decodes the cookie using base64
+3. validate_login checks if the DB contains the decoded cookie as a user name
+4. If it does the client will be able to connect to the website without entering any username/password
+Thus, all we need to do is to edit the 'login' cookie to contain 'edward' at base64 (= ZWR3YXJk)
+We can calculate 'edwards' base64 using one of the following:
+1. JS     - btoa('edward')
+2. Python - base64.b64encode('edward'.encode()).decode()

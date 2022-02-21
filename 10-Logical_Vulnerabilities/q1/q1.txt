@@ -1,0 +1,2 @@
+I used the fact that run.py uses eval on the script I wrote and that
+it imported os in order to run os.system() to run 'echo hacked'.

@@ -1,0 +1,6 @@
+The vulnerability is that slack-off didn't implement CSRF tokens and thus it processes
+requests even if their origin isn't from slack-off.
+The exploit I used is simply sending a post request with the proper data in 
+accordance to the question requirements (channel, message, file).
+It works since the the request is being sent using the user's cookies and since 
+slack off didn't implement CSRF tokens so it processes the request.

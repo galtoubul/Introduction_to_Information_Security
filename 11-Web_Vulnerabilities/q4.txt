@@ -1,0 +1,9 @@
+The vulnerability is that there isn't a good enough escaping/blacklisting in the
+input for SQL queries, such as the one that is related to renaming.
+The exploit is SQL injection.
+The attack works since I used /rename in the following way:
+I passed as new_name: closing ' for the input for full_name and gave a false
+condition so that no renaming has happened. Instead I continued the SQL query
+with my own query to update the password of bob to 1234 (saved the hash of it
+in the DB using sha1). Then I used -- in the end to comment the following:
+' WHERE user_id = 'bob'

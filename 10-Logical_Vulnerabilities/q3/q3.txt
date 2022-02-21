@@ -1,0 +1,8 @@
+The flaw in the run.py's implementation is that it uses the same indices
+for slicing the data from the script and the data from user's list
+By passing '::<cmd>' as our script we get:
+username_end = 0
+password_end = 1
+and thus:
+user[:0] = data[:0] = ''
+user[0+1:1] = data[0+1:1] = ''
