@@ -1,0 +1,34 @@
+encode:
+    iterated over the input and:
+    for each non ascii char - xored with 255 (ff) and inserted its index.
+    for the rest - left it as is.
+
+get_decoder_code:
+    xored each byte in index that belongs to indices with ff (bl reg).
+    In order to calculate the offset (ecx) I calculated the difference
+    form the last index and increased ecx number of times that equals
+    that difference.
+    In addition, I sorted indices for the case that it isn't sorted
+    (only for edge case you might check, since the indices input I 
+    passed is sorted).
+
+get_ascii_shellcode:
+    esp after ret from handle_connection = 0xbfffe1a0
+    starting point of the shellcode      = 0xbfffe12f
+    thus, if we move esp to eax and we want eax to point to the start of
+    the shellcode, then we should sub (0xbfffe1a0 - 0xbfffe12f =) 0x71
+    from eax.
+
+get_payload:
+    Used "inc esi" as a nop since it doesn't affect my shellcode
+    decoder size = 209 Bytes = 0xD1 Bytes
+    thus, payload without nop slide starts at
+    0xbfffe12f - 0xD1 = 0xbfffe05e
+    buff starts at 0xbfffdd8c.
+    thus, nop slide size = 0xbfffe05e - 0xbfffdd8c = 0x2d2 Bytes
+    I chose to jump to somewhere around the middle of the nop slide,
+    since I don't have any assumptions about the stack movement direction
+    Thus, I jumped to 0xbfffe05e - (0x2d2 / 2) ~= 0xbfffdef0
+    (since we  should pass ascii only at bytes payload[4:-5]
+    I jumped to 0xbfffdf00)
+    I overriden conn with 0x07 which shouldn't close any fd

@@ -1,0 +1,10 @@
+I overriden the return address with gadgets that mov ecx (!= 0)
+to the address of AUTH.
+In more details, the instructions of my gadgets:
+pop eax -> eax's value will be AUTH's address, since I placed its address just 
+above this command on stack
+mov DWORD PTR [eax], ecx -> I found out the ecx isn't 0 (it's value is 0x32) 
+just before calling ret at check_password. So, when jumping back to main
+and checking if auth isn't 0 we will get true, and thus "Victory!" will be printed.
+I found the original ra of check_password and placed it as the last instruction,
+so that the program will get to main eventually.

@@ -1,0 +1,37 @@
+The stack status at check_password just before RET:
+
+    stack address   |   # of bytes  |   value
+------------------------------------------------------------------------
+    0xbfffe028      |       36      |   my string (Take me ...)
+    0xbfffe024      |       4       |   0xbfffe014
+    0xbfffe020      |       4       |   pop esp; RET
+    0xbfffe01c      |       4       |   0xbfffe028
+    0xbfffe018      |       4       |   add esp, 0x4; RET
+    0xbfffe014      |       4       |   puts' address
+    0xbfffe010      |       4       |   puts' address
+    0xbfffe00c      |       4       |   pop ebp; RET
+    0xbfffdffc      |       16      |
+    0xbfffdfbb      |       65      |   &hash[0]
+    0xbfffdf85      |       54      |   &buff[11]
+    
+a. Why the loop works after we call puts?
+   After we call puts we skip 0xbfffe01c and update esp to 0xbfffe014 using pop esp.
+   Then we execute RET, and by doing so, eip = ebp = puts' address.
+   The reason for eip = ebp is that puts pushes ebp at 0xbfffe014.
+   Since, ebp = puts' address (by previous instructions), we get eip = puts' address
+   Thus we start execute it with the same args as before.
+   puts overrites parts of the stack at addresses <= 0xbfffe014.
+   As mentioned, 0xbfffe014 is overriden with ebp = puts' address, so it doesn't affect
+   our code. For lower addreses that are overriden - it doesn't affect the loop since we 
+   don't access this addresses anymore.
+
+b. Why this 4 bytes skip is necessary?
+   It's necessary since we want to skip 0xbfffe01c which contains the string's address.
+   The reason that the string's address has to be there is that puts is expecting
+   it at ebp + 8 which is 0xbfffe01c when the calculation is done.
+   If we weren't skipping it then we would get a segfault since this address contains the string.
+
+c. Where and how did you include your string in the ROP?
+   I included my string using a null terminated bytes literal.
+   I passed it at the end of my paload.
+   As you can see above, I have calculated its address.

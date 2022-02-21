@@ -1,0 +1,8 @@
+When check_password is going to finish execution it will RET.
+check_password's ra address = 0xbfffe00c
+Thus, I overriden its ra with system address.
+When the program will jump to system, the stack will look like this:
+0xbfffe014  |   system's arg
+0xbfffe010  |   system's ra
+0xbfffe00c  |   system's address
+Thus, I overriden system's arg with "/bin/sh" address.

@@ -1,0 +1,16 @@
+shellcode.asm:
+    Notes in the file
+    In the begging of the file I have alligned the stack pointer and 
+    substracketed 512 Bytes for:
+    local variables of shellcode.asm, the shellcode itself
+    ,the decoder (relevant for the next question) and some spare space.
+
+get_payload:
+    Tried to jump to the middle of the nop slide (since I don't have 
+    any assumptions about the stack movement direction) according to:
+    starting point of the shellcode  = 0xbfffe12f
+    starting point of buff           = 0xbfffdd8c
+    Thus, nop slide size is 0xbfffe12f - 0xbfffdd8c = 0x3a3 bytes
+    So, we should jump to: 0xbfffdd8c + (0x3a3 / 2) ~=  0xbfffdf5d
+    I jumped to 0xbfffdf60
+    I overriden conn with 0x07 which shouldn't close any fd

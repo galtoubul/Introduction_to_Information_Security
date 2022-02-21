@@ -1,0 +1,7 @@
+The vulnerability is that is strcat doesn't check for the size of the copied data
+(unlinke strncat which is safer).
+We can exploit it by noticing that buff and auth are close enough
+(buff[20] = auth's msB), so we can change auth value even if the password isn't
+correct. We just have to make sure that auth == 0x01 and by that we will pass
+check_password. Since we use little endian, then auth's msB is actualy its lsB,
+so we need exactly 10B for doing so (which is the max length for a password).

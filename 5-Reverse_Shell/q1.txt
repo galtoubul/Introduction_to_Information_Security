@@ -1,0 +1,11 @@
+The vulnerability is in handle_connection function.
+When it is called by serve with a socket descriptor it reads "size" bytes into 1024b size buffer.
+The problem is that "size" can be any unsigned int, thus we exploit it by overflowing 
+buff so that it will override the return address.
+
+The return address starts at 0xbfffe19c.
+buff starts at 0xbfffdd8c.
+0xbfffe19c - 0xbfffdd8c = 1040 (10)
+So, by passing a 1044b payload we can override the return address and crash the program.
+(because we have to pass a null terminated string we will pass 1045b string in which
+bytes 1040 - 1044 will be the desired return address and byte 1045 will be \0)

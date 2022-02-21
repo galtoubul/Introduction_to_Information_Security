@@ -1,0 +1,7 @@
+The vulnerability is in check_password function.
+It calls decode_base64 which inserts the decoded argv[1] to buff[11].
+buff[11] address          =   0xbfffdf85
+return address address    =   0xbfffe00c
+0xbfffe00c - 0xbfffdf85   =   135
+Thus, by passing a 139 bytes string as input we can override
+the return address and crash the program.

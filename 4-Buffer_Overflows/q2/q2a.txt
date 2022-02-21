@@ -1,0 +1,3 @@
+The vulnerability is that the code uses strcat as in q1.
+We can exploit by overflowing buff such that it will override some important
+variables on the stack (such as the return address).

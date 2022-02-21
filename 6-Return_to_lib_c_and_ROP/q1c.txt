@@ -1,0 +1,9 @@
+As a continue to q1b explenation..
+We want that after system finishes execution it will jump to exit.
+Thus, I overriden system's ra with exit's address.
+When the program will jump to exit, the stack will look like this:
+0xbfffe018  |   exit's arg
+0xbfffe014  |   system's arg
+0xbfffe010  |   system's ra = exit's address  
+0xbfffe00c  |   system's address
+Thus, I overriden exit's arg with 0x42.
