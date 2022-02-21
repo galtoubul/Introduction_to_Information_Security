@@ -1,0 +1,5 @@
+With the arriving of each SYN packet (tcp flags == 2):
+I created a SYN ACK packet with "reversed" IP address/port
+I increamented ACK# by one since the SYN packet length is one.
+I set SEQ# to the SYN's ACK# (0 by default since this is onlt the start of the 3WHS)
+I set the flags to SA for SYN-ACK

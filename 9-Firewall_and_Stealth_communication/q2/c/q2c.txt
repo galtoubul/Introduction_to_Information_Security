@@ -1,0 +1,6 @@
+I used the same method for finding love as in part a.
+In order to find encrypted data I decoded the raw part of the packet,
+while ignoring decoding errors since it makes sense that there will be some
+bytes that can't be decoded due to the encryption.
+Than I used the shannon_entropy supplied function to find the entropy level
+of the data.

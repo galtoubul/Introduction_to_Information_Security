@@ -1,0 +1,4 @@
+In order to extract the pid I have used "pidof antivirus" which will
+cause the terminal to print the pid of antivirus if it running.
+I passed the payload to get_antivirus_pid in which I decoded it
+and converted it to an int.

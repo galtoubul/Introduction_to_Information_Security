@@ -1,0 +1,15 @@
+q4.c:
+    There are comments in the file itself.
+    My code workflow (at the child process):
+    1. Attach to the antivirus process
+    2. Wait for a syscall
+    3. If it is a read syscall (eax=0x03) then change size (edx) to 0.
+       Go back to 2.
+    I modified ecx in case of a read syscalls in both PTRACE_SYSCALL
+    since we can't be sure in which point the malware will start
+    the ptrace. Thus, it might be that the first one will catch a
+    syscall immediately after it exits.
+
+q4.py:
+    There are comments in the file itself, and I used the same logic
+    as in the previous questions.

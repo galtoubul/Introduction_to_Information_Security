@@ -1,0 +1,22 @@
+is_packet_to_original_gateway:
+    When a packet is meant to reach the GW it must have its MAC address as
+    destination MAC address eventually, while the packet IP may be the IP 
+    of another host. Thus, I checked that the packet had the MAC address
+    of the GW as destination MAC address and that its source MAC address
+    wasn't our MAC address in order to make sure we don't filter packets
+    sent by us.
+
+create_poison:
+    I have created an ARP response to the sender of the victim packet (thus,
+    using its ip as pdst = ip destination).
+    In this response I "told" him:
+    "Hi! ip psrc has MAC address hwdst"
+    where psrc is the GW IP and hwdst is our MAC address.
+
+is_stolen_packet:
+    If this packet is stolen by our ARP poisoning then it's a packet which
+    its destination isn't us. Thus, its ip address isn't our ip address.
+    But, this packet reach us anyway since it has our MAC address.
+    The reason for that is that this packet was meant to be routed by the GW
+    but the arp table contains our MAC address as the GW MAC Address.
+    

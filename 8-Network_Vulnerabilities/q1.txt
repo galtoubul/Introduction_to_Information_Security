@@ -1,0 +1,7 @@
+a. I have filtered the desired packet using:
+http.request.method == "POST"
+
+b + c : there is documentation inside the code.
+In General: I checked that the packet is a login request to our WEBSITE
+and then extracted username and password using: urlparse.parse_qs
+Then I replaced \\ with \ in both username and password

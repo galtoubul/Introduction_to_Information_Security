@@ -1,0 +1,16 @@
+generate_syn_packets:
+    Created packets with SYN flag in order to try to initialize
+    a 3-way-handshake.
+
+analyze_scan:
+    If we got answered then the port is open or closed.
+    If it is closed then we will probably get ACK-RST flags.
+    Thus, RST flag will be on.
+    If it is open then we will get SYN-ACK flags.
+    Thus, these are the only flags that will be on.
+    if we didn't get any answer then the firewall has filtered us.
+
+The resaon for it being called stealth SYN scan is that in a real stealth
+SYN scan a RST is being sent as well and thus closing the half open connection
+that was made. By doing so it is attracting less attention than if it 
+wouldn't do that and might cause a SYN flood DoS. 

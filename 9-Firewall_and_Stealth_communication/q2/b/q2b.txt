@@ -1,0 +1,8 @@
+I generated the key and the IV using Crypto.Random.get_random_bytes
+(copied key from terminal after creating it)
+I chose to use CBC mode since it's better then ECB mode and seems
+to be good enough for our needs.
+I used PKCS7 padding as suggested
+Did encryption, decryption and padding in according to the documentations:
+https://cryptography.io/en/latest/hazmat/primitives/padding/#cryptography.hazmat.primitives.padding.PKCS7
+https://pycryptodome.readthedocs.io/en/latest/src/cipher/classic.html#cbc-mode

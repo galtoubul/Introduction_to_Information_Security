@@ -1,0 +1,14 @@
+I found the GOT adddress by running:
+objdump -M intel -d binaries/antivirus | grep -a10 check_if_virus
+
+Then I got this output:
+08048600 <check_if_virus@plt>:
+ 8048600:	ff 25 20 a0 04 08    	jmp    DWORD PTR ds:0x804a020
+ 8048606:	68 28 00 00 00       	push   0x28
+ 804860b:	e9 90 ff ff ff       	jmp    80485a0 <.plt>
+
+As we learned at the recitation, the GOT address of check_if_virus
+is 0x804a020.
+The alternative I chose is check_if_live_patch, since it has the same signature
+and the patch_hashes it scans doesn't contain any of invalid_hashes.
+I found its address the same way as I found check_if_virus's address at q2.

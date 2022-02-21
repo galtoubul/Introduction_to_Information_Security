@@ -1,0 +1,10 @@
+I found the address to override by runnning:
+"objdump -M intel -d binaries/antivirus | grep check_if_virus"
+Then I copied from the output the address of check_if_virus at the PLT.
+The reason for doing so is that check_if_virus is called by jumping to 
+its snippet at the PLT.
+
+After patching an antivures process code, each call to check_if_virus
+will jump to my patching (which will always return 0):
+bf 00 00 00   =   mov eax, 0
+c3            =   ret

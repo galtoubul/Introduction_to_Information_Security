@@ -1,0 +1,15 @@
+Using the code from q1 I filtered only the packets that are
+a login request to our WEBSITE. For each of those I built a new packet.
+I made a "reversed" packet regarding the ip and tcp port such that
+new source tcp port/ip = old destination tcp port/ip and vice versa
+The ack# of the response packet should be the seq# of the request packet + 
+length of the request itself (Raw part of the packet)
+The reason for adding the length of the request itself is that seq# 
+doesn't include it and we want to acknowledgment the data till the latest
+point of the stream.
+The seq# of the response packet should be the ack# of the request packet
+I turned on Ack flag since this is an acknowledgment of the request packet
+I turned on Push flag in order to send the response immediatly and before 
+the response with the data from the course WEBSITE
+I turned on the Fin flag to close the connection in according the execise
+requirements.

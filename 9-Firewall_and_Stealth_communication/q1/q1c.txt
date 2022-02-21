@@ -1,0 +1,7 @@
+The valnerability in the firewall design that makes him susceptible to a DoS attack
+is that an attacker may cause the firewall to block IP addresses of legitmate hosts
+by sending more than 15 SYN packets in a 60 seconds window with their IP address.
+So, let's say that IP address A is a legitmate host that should be able to send
+packets over the firewall and the attacker wants to prevent the firewall from giving
+service to this host, so he can block its IP with more than 15 SYN packets in a 60
+seconds window.

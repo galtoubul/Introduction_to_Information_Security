@@ -1,0 +1,3 @@
+I encoded 'love' and searched its encoding in the raw section of each
+packet which has a raw section. If found -> I added the src ip to unpersons.
+The word love can only appear there.

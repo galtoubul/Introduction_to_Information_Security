@@ -1,0 +1,9 @@
+The general idea of my solution:
+I chose to use a dictionary from ip to insertion times.
+Every time it gets bigger than 20 entries I update it
+(remove all ips that their latest insertion time was before more than 60 seconds)
+When a new SYN packet from a non-blocked ip arrives:
+I'm adding it to the dictionary/updating its insertion times list
+(remove all insertion times that waren't in the last 60 seconds)
+When the size of an ip's list in the dictionary gets bigger than 15 than 
+I block it by adding a new rule to DROP all the packets from this IP.
